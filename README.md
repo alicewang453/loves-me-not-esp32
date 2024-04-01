@@ -1,4 +1,4 @@
-# COMS3930-Module 1 
+# COMS3930 Module 1
 
 ## Loves me ...? Generative Art Installation
 
