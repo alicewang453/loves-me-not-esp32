@@ -1,12 +1,27 @@
-# COMS3930 Module 1
+# Loves Me, Loves Me Not
 
-## Loves me ...? Generative Art Installation
+A small hanging art installation that plays "he loves me, he loves me not" forever. A screen draws a flower with a random number of petals, then plucks them one at a time while alternating between "loves me" and "loves me not," and lands on a final answer before starting a new flower.
 
-Description:
-A series of flowers, each with a randomly generated number of petals, simulate the game ["he loves me, he loves me not."](https://en.wikipedia.org/wiki/He_loves_me..._he_loves_me_not)
- One flower is displayed at a time. Petals are picked off one-by-one, and a corresponding message of “[he, she, they, I] loves me” or “[he, she, they, I] loves me not” is shown, culminating in a final answer when the last petal is picked off. 
+<img src="hungup.png" width="400" alt="The installation: a decorated envelope holding the ESP32 screen, hung from a ceiling vent">
 
-Hardware Materials:
+## How it works
+
+The code is a single Arduino sketch, [`creative_installation1.ino`](creative_installation1.ino), running on a TTGO T1 (an ESP32 board with a built-in screen):
+
+- **Random flowers**: each round picks 6–11 petals and a speaker ("He loves," "She loves," "They love" or "I love").
+- **Drawing petals**: each petal is a chain of filled circles laid along an angle of `i × 360° / petals` from the center. Plucking a petal redraws it in the background color.
+- **Smooth text**: messages are drawn into off-screen sprites with the TFT_eSPI library and pushed to the screen all at once, so they don't flicker.
+- **Battery life**: it runs on a small rechargeable battery and uses the ESP32's deep sleep between cycles to save power.
+
+## Tech
+
+C++ (Arduino) · ESP32 · TFT_eSPI
+
+Built for COMS 3930 at Columbia (Module 1: generative art installation).
+
+## Build it yourself
+
+**Hardware materials:**
 * TTGO T1 board with built-in ESP32 microcontroller 
 * USB-C to USB-C cable 
 * Laptop with USB-C port
